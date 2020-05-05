@@ -1,1 +1,5 @@
 *.pyc
+env/
+users/migrations/*
+portfolio/migrations/*
+pages/migrations/*
