@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
+from portfolio.models import Portfolio
 
 def user_register_view(request, *args, **kwargs):
     '''
@@ -21,6 +22,8 @@ def user_register_view(request, *args, **kwargs):
             user.email = user_profile_form.cleaned_data['email']
             user.save()
             user_profile.save()
+            new_portfolio = Portfolio(user_profile=user_profile)
+            new_portfolio.save()
             messages.success(request, "Account created successfully! You may now log in.")
             return redirect(reverse('user-login'))
         else:

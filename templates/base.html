@@ -25,7 +25,7 @@
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav" align="right">
                   {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" href="#">Portfolio Dashboard</a>
+                    <a class="nav-item nav-link" href="{% url 'portfolio-dashboard' %}">Portfolio Dashboard</a>
                     <a class="nav-item nav-link" href="#">Account</a>
                     <a class="nav-item nav-link" href="#">Settings</a>
                     <a class="nav-item nav-link" href="{% url 'user-logout' %}">Logout</a>

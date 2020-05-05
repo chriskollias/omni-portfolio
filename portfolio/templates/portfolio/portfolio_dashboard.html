@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if portfolio_positions %}
+    {% for position in portfolio_positions %}
+        {{ position }}
+    {% endfor %}
+
+{% else %}
+    <h1>You currently have no investments in your portfolio!</h1>
+{% endif %}
+
+{% endblock content %}
