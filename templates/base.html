@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omni Portfolio{{ title_extended }}</title>
+</head>
+<body>
+      <!-- navbar -->
+      <header class="site-header">
+          <nav class="navbar">
+            <div class="container">
+              <a href="{% url 'landing-page' %}">
+                <img src="{% static 'logo.png' %}">
+              </a>
+              <span class="navbar-toggler-icon"></span>
+              <div class="collapse navbar-collapse" id="navbarToggle">
+
+                <div class="navbar-nav mr-auto">
+                  <a class="nav-item nav-link" href="#">About</a>
+                  <a class="nav-item nav-link" href="#">Blog</a>
+                  <a class="nav-item nav-link" href="#">Contact Us</a>
+                </div>
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav" align="right">
+                  {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="#">Portfolio Dashboard</a>
+                    <a class="nav-item nav-link" href="#">Account</a>
+                    <a class="nav-item nav-link" href="#">Settings</a>
+                    <a class="nav-item nav-link" href="{% url 'user-logout' %}">Logout</a>
+                  {% else %}
+                    <a class="nav-item nav-link" href="{% url 'user-login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'user-register' %}">Register</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+</body>
+</html>

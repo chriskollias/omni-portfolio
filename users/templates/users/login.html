@@ -3,8 +3,7 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        {{ base_form.as_p }}
-        {{ user_profile_form.as_p }}
-        <button type="submit">Sign Up</button>
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
     </form>
 {% endblock content %}

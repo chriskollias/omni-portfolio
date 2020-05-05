@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse, redirect
+from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
 
@@ -25,3 +26,12 @@ def user_register_view(request, *args, **kwargs):
     user_profile_form = UserRegistrationForm()
     return render(request, 'users/registration.html', {'base_form': base_form, 'user_profile_form': user_profile_form})
 
+
+def user_logout_view(request, *args, **kwargs):
+    logout(request)
+    return redirect(reverse('landing-page'))
+
+
+def user_login_view(request, *args, **kwargs):
+    logout(request)
+    return redirect(reverse('landing-page'))
