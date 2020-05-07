@@ -67,5 +67,16 @@ def new_trade_confirmation_view(request, *args, **kwargs):
             messages.success(request, "Trade has been placed successfully!")
         else:
             messages.error(request, "There was an error placing your trade:\n" + str(result['trade_errors']))
+        clear_session_variables(request)
         return redirect('portfolio-dashboard')
     return render(request, 'portfolio/new_trade_confirmation.html', {'trade_info': trade_info, 'trade_errors': trade_errors})
+
+def clear_session_variables(request):
+    '''
+    delete sensitive session variables after trade is completed
+    :param request:
+    :return:
+    '''
+    session_variables = ['price', 'symbol', 'quantity', 'asset_class', 'position_type', 'order_type']
+    for variable in session_variables:
+        del request.session[variable]
