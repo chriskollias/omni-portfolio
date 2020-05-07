@@ -10,5 +10,8 @@
 {% else %}
     <h1>You currently have no investments in your portfolio!</h1>
 {% endif %}
+<br>
+<hr>
+<a href="{% url 'new-trade' %}"><button>New Trade</button></a>
 
 {% endblock content %}

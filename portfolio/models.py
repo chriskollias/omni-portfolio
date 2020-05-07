@@ -31,11 +31,21 @@ class Position(models.Model):
     )
 
     position_type = models.CharField(max_length=1, choices=POSITION_TYPES)
+
+    ORDER_TYPES = (
+        ('M', 'Market'),
+        ('L', 'Limit'),
+        ('S', 'Stop'),
+        ('SL', 'Stop Limit')
+    )
+
+    order_type = models.CharField(max_length=2, choices=ORDER_TYPES)
     position_size = models.DecimalField(max_digits=10, decimal_places=3)
     position_created = models.DateTimeField()
-    position_status = models.CharField(max_length=120)
+    position_status = models.CharField(max_length=120)      # open, filled, partially filled?
     position_entered_price = models.DecimalField(max_digits=11, decimal_places=4, null=True)
     position_exited_price = models.DecimalField(max_digits=11, decimal_places=4, null=True)
 
     def __str__(self):
         return f'{self.portfolio.user_profile.user.username}: {self.position_type} {self.position_symbol} x {self.position_size}'
+

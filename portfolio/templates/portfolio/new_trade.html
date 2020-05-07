@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> new trade screen</h1>
+
+{% if trade_info %}
+
+    TRADE INFO: {{ trade_info }}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Place Order</button>
+</form>
+
+{% endblock content %}
