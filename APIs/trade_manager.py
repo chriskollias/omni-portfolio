@@ -9,12 +9,23 @@ def place_trade(trade_params, portfolio):
     position_type = trade_params['position_type']
     order_type = trade_params['order_type']
     price = trade_params['price']
+    total = trade_params['total']
+
+    result = {'new_trade': None, 'trade_errors': None}
+
+    if portfolio.cash_available < total:
+        result['trade_errors'] = 'Not enough cash available to place this trade.'
+        return result
     try:
         new_trade = Position(portfolio=portfolio, asset_class=asset_class, position_symbol=symbol, position_type=position_type, order_type=order_type, position_size=quantity, position_created=datetime.now(), position_status='filled', position_entered_price=price)
         new_trade.save()
-        return new_trade
+        portfolio.cash_available = portfolio.cash_available - total
+        portfolio.save()
+        result['new_trade'] = new_trade
+        return result
     except:
-        return None
+        result['trade_errors'] = 'Unknown Error.'
+        return result
 
 def get_trade_info(symbol, quantity, asset_class, position_type, order_type):
     #print('Getting trade info', symbol, quantity, asset_class, position_type, order_type)

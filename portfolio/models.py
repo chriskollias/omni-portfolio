@@ -3,6 +3,7 @@ from users.models import UserProfile
 
 class Portfolio(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    cash_available = models.DecimalField(max_digits=11, decimal_places=2, default=100000)
 
     def __str__(self):
         return f'{self.user_profile.user.username} Portfolio'

@@ -2,15 +2,24 @@
 
 {% block content %}
 
+<div align="left">
+    <span style="font-size:1.5rem">Cash Available: ${{ cash_available }}</span>
+</div>
+
+<p>
 {% if portfolio_positions %}
     <ul>
+    <span style="font-size:1.5rem">Current Trades:</span>
     {% for position in portfolio_positions %}
         <li>{{ position }}</li>
     {% endfor %}
     </ul>
+</p>
 
 {% else %}
+    <p>
     <h1>You currently have no investments in your portfolio!</h1>
+    </p>
 {% endif %}
 <br>
 <hr>

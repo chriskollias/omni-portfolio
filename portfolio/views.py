@@ -11,9 +11,10 @@ from APIs import trade_manager
 def portfolio_dashboard_view(request, *args, **kwargs):
     user_profile = UserProfile.objects.get(user=request.user)
     portfolio = Portfolio.objects.get(user_profile=user_profile)
+    cash_available = portfolio.cash_available
     portfolio_positions = Position.objects.filter(portfolio=portfolio)
 
-    return render(request, 'portfolio/portfolio_dashboard.html', {'portfolio_positions': portfolio_positions})
+    return render(request, 'portfolio/portfolio_dashboard.html', {'portfolio_positions': portfolio_positions, 'cash_available': cash_available})
 
 @login_required
 def new_trade_view(request, *args, **kwargs):
@@ -59,11 +60,12 @@ def new_trade_confirmation_view(request, *args, **kwargs):
     if request.method == 'POST':
         user_profile = UserProfile.objects.get(user=request.user)
         portfolio = Portfolio.objects.get(user_profile=user_profile)
-        trade_result = trade_manager.place_trade(trade_info, portfolio)
+        result = trade_manager.place_trade(trade_info, portfolio)
 
-        if trade_result:
+        print('result:', result)
+        if result['new_trade']:
             messages.success(request, "Trade has been placed successfully!")
         else:
-            messages.error(request, "There was an error placing your trade.")
+            messages.error(request, "There was an error placing your trade:\n" + str(result['trade_errors']))
         return redirect('portfolio-dashboard')
     return render(request, 'portfolio/new_trade_confirmation.html', {'trade_info': trade_info, 'trade_errors': trade_errors})
