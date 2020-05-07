@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if not trade_errors %}
+    {% if trade_info %}
+        <h3> Please confirm that the following information about your desired trade is correct:</h3>
+        <p>
+            <ul>
+                <li>Order Type: {{ trade_info.order_type }}</li>
+                <li>Position Type: {{trade_info.position_type}}</li>
+                <li>Asset Class: {{ trade_info.asset_class }}</li>
+                <li>Symbol: {{ trade_info.symbol }}</li>
+                <li>Quantity: {{ trade_info.quantity }}</li>
+                <li>Price per Contract: ${{ trade_info.price }}</li>
+            </ul>
+            <br><br>
+            For a total price of: ${{ trade_info.total }}
+        </p>
+        <p>
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                <a href="{% url 'new-trade' %}"><button>Cancel Order</button></a>
+                <button type="submit">Confirm Order</button>
+            </form>
+        </p>
+    {% endif %}
+
+{% else %}
+    {{ trade_errors }}
+    <p>
+        <a href="{% url 'new-trade' %}"><button>Return to new trade screen</button></a>
+    </p>
+{% endif %}
+
+
+{% endblock content %}

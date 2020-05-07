@@ -1,8 +1,20 @@
+from datetime import datetime
 from .yfinance_api_interface import YFinanceAPiInterface
+from portfolio.models import Position
 
-def place_trade(symbol, quantity, asset_class, position_type, order_type):
-    # create position object associated with current users's portfolio
-    pass
+def place_trade(trade_params, portfolio):
+    asset_class = trade_params['asset_class']
+    symbol = trade_params['symbol']
+    quantity = trade_params['quantity']
+    position_type = trade_params['position_type']
+    order_type = trade_params['order_type']
+    price = trade_params['price']
+    try:
+        new_trade = Position(portfolio=portfolio, asset_class=asset_class, position_symbol=symbol, position_type=position_type, order_type=order_type, position_size=quantity, position_created=datetime.now(), position_status='filled', position_entered_price=price)
+        new_trade.save()
+        return new_trade
+    except:
+        return None
 
 def get_trade_info(symbol, quantity, asset_class, position_type, order_type):
     #print('Getting trade info', symbol, quantity, asset_class, position_type, order_type)

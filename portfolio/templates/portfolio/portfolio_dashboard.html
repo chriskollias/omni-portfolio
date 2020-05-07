@@ -3,9 +3,11 @@
 {% block content %}
 
 {% if portfolio_positions %}
+    <ul>
     {% for position in portfolio_positions %}
-        {{ position }}
+        <li>{{ position }}</li>
     {% endfor %}
+    </ul>
 
 {% else %}
     <h1>You currently have no investments in your portfolio!</h1>

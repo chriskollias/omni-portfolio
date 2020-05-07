@@ -7,6 +7,7 @@ django-excel-base==1.0.4
 django-excel-response2==3.0.2
 django-six==1.0.4
 idna==2.9
+lxml==4.5.0
 multitasking==0.0.9
 numpy==1.18.4
 pandas==1.0.3
@@ -14,6 +15,7 @@ python-dateutil==2.8.1
 pytz==2020.1
 requests==2.23.0
 screen==1.0.1
+simplejson==3.17.0
 six==1.14.0
 sqlparse==0.3.1
 urllib3==1.25.9

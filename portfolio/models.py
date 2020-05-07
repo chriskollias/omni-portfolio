@@ -47,5 +47,5 @@ class Position(models.Model):
     position_exited_price = models.DecimalField(max_digits=11, decimal_places=4, null=True)
 
     def __str__(self):
-        return f'{self.portfolio.user_profile.user.username}: {self.position_type} {self.position_symbol} x {self.position_size}'
+        return f'{self.order_type} {self.position_type} {self.position_symbol} x {self.position_size} at {self.position_entered_price} each.'
 

@@ -16,18 +16,18 @@ class NewTradeForm(forms.Form):
 
 
     POSITION_TYPES = (
-        ('L', 'Long'),
-        ('S', 'Short'),
+        ('Long', 'Long'),
+        ('Short', 'Short'),
     )
 
     position_type = forms.ChoiceField(choices=POSITION_TYPES)
 
 
     ORDER_TYPES = (
-        ('M', 'Market'),
-        ('L', 'Limit'),
-        ('S', 'Stop'),
-        ('SL', 'Stop Limit')
+        ('Market', 'Market'),
+        ('Limit', 'Limit'),
+        ('Stop', 'Stop'),
+        ('Stop Limit', 'Stop Limit')
     )
 
     order_type = forms.ChoiceField(choices=ORDER_TYPES)
