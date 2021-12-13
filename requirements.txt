@@ -7,7 +7,7 @@ django-excel-base==1.0.4
 django-excel-response2==3.0.2
 django-six==1.0.4
 idna==2.9
-lxml==4.6.3
+lxml==4.6.5
 multitasking==0.0.9
 numpy==1.18.4
 pandas==1.0.3
